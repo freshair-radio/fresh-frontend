@@ -1,10 +1,10 @@
 {
   "development": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://admin.freshair.dev",
+    "contentApiKey": "a3eaf567440ca5220a8f692296"
   },
   "production": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://admin.freshair.dev",
+    "contentApiKey": "a3eaf567440ca5220a8f692296"
   }
 }

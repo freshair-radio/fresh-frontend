@@ -1,0 +1,119 @@
+.pagination {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: center;
+}
+.pagination div {
+    display: inline-block;
+}
+.pagination h3 {
+    margin: 40px;
+    margin-top: 10px;
+}
+.m-top.tag-header h1 {
+    margin-top: 40px;
+}
+body .post-card-image {
+    background: #c5d2d9;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body .show-card .post-card-image {
+    background: #c5d2d9;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.show-description {
+    padding-top: 40px;
+}
+.show-description .post-card-large .post-card-content {
+    flex: 1 1 0;
+}
+.post-feed.show {
+    padding-top: 20px;
+}
+.podcast-card {
+    overflow: hidden;
+    margin: 0 20px 20px;
+    min-height: 100px;
+    background: #fff 50%;
+    background-size: auto;
+    background-size: cover;
+    border-radius: 5px;
+    -webkit-box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px,
+        rgba(39, 44, 49, 0.03) 1px 3px 8px;
+    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
+        1px 3px 8px rgba(39, 44, 49, 0.03);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    position: relative;
+}
+.podcast-card-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.podcast-card-content {
+    padding: 10px;
+}
+.podcast-card-content p {
+    margin: 0px;
+}
+.control-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    background: rgba(0, 0, 0, 0.3);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+}
+.control-overlay img {
+    width: 30px;
+    height: 30px;
+}
+body .post-card:hover {
+    transform: initial;
+}
+.nav li a {
+    font-size: 1.5rem;
+}
+@media (max-width: 900px) {
+}
+.site-nav {
+    width: 100%;
+}
+.site-nav-left {
+    width: 100%;
+    padding-right: 4vw;
+}
+.site-nav-left .nav {
+    flex-wrap: wrap;
+    width: 100%;
+}
+.nav li {
+    line-height: 1em;
+}
+.site-header {
+    background-color: rgb(247, 164, 45);
+}
+header::before {
+    background: none !important;
+}
+body .site-header-content {
+    min-height: 400px;
+}
+.home-template .site-nav {
+    position: absolute;
+    top: 20px;
+}
+.site-nav,
+.site-nav-left {
+    overflow-y: visible;
+}

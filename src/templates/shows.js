@@ -4,29 +4,32 @@ import { graphql } from "gatsby";
 
 import { Layout, PostCard, Pagination } from "../components/common";
 import { MetaData } from "../components/common/meta";
-
+import ShowCard from "../components/common/ShowCard";
 /**
- * Main index page (home page)
+ * Tag page (/tag/:slug)
  *
- * Loads all posts from Ghost and uses pagination to navigate through them.
- * The number of posts that should appear per page can be setup
- * in /utils/siteConfig.js under `postsPerPage`.
+ * Loads all posts for the requested tag incl. pagination.
  *
  */
-const Index = ({ data, location, pageContext }) => {
+const Tag = ({ data, location, pageContext }) => {
+    const tag = data.ghostTag;
     const posts = data.allGhostPost.edges;
 
     return (
         <>
-            <MetaData location={location} />
-            <Layout isHome={true} bodyClass="home-template">
+            <MetaData data={data} location={location} type="series" />
+            <Layout>
                 <div className="inner">
-                    <div className="post-feed">
-                        {posts.map(({ node }, idx) => (
+                    <header className="m-top tag-header">
+                        <h1>Shows</h1>
+                        {tag.description ? <p>{tag.description}</p> : null}
+                    </header>
+                    <section className="post-feed">
+                        {posts.map(({ node }) => (
                             // The tag below includes the markup for each post - components/common/PostCard.js
-                            <PostCard key={node.id} post={node} idx={idx} />
+                            <ShowCard key={node.id} show={node} />
                         ))}
-                    </div>
+                    </section>
                     <Pagination pageContext={pageContext} />
                 </div>
             </Layout>
@@ -34,8 +37,12 @@ const Index = ({ data, location, pageContext }) => {
     );
 };
 
-Index.propTypes = {
+Tag.propTypes = {
     data: PropTypes.shape({
+        ghostTag: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            description: PropTypes.string
+        }),
         allGhostPost: PropTypes.object.isRequired
     }).isRequired,
     location: PropTypes.shape({
@@ -44,17 +51,18 @@ Index.propTypes = {
     pageContext: PropTypes.object
 };
 
-export default Index;
+export default Tag;
 
-// This page query loads all posts sorted descending by published date
-// The `limit` and `skip` values are used for pagination
 export const pageQuery = graphql`
-    query GhostPostQuery($limit: Int!, $skip: Int!) {
+    query GhostShowsQuery($slug: String!, $limit: Int!, $skip: Int!) {
+        ghostTag(slug: { eq: $slug }) {
+            ...GhostTagFields
+        }
         allGhostPost(
             sort: { order: DESC, fields: [published_at] }
+            filter: { tags: { elemMatch: { slug: { eq: $slug } } } }
             limit: $limit
             skip: $skip
-            filter: { tags: { elemMatch: { slug: { eq: "hash-article" } } } }
         ) {
             edges {
                 node {

@@ -1,37 +1,47 @@
-const path = require(`path`)
+const path = require(`path`);
 
-const config = require(`./src/utils/siteConfig`)
-const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
+const config = require(`./src/utils/siteConfig`);
+const generateRSSFeed = require(`./src/utils/rss/generate-feed`);
+const autoprefixer = require("autoprefixer");
+const colorFunction = require("postcss-color-function");
+const cssnano = require("cssnano");
+const customProperties = require("postcss-custom-properties");
+const easyimport = require("postcss-easy-import");
 
-let ghostConfig
+let ghostConfig;
 
 try {
-    ghostConfig = require(`./.ghost`)
+    ghostConfig = require(`./.ghost`);
 } catch (e) {
     ghostConfig = {
         production: {
             apiUrl: process.env.GHOST_API_URL,
-            contentApiKey: process.env.GHOST_CONTENT_API_KEY,
-        },
-    }
+            contentApiKey: process.env.GHOST_CONTENT_API_KEY
+        }
+    };
 } finally {
-    const { apiUrl, contentApiKey } = process.env.NODE_ENV === `development` ? ghostConfig.development : ghostConfig.production
+    const { apiUrl, contentApiKey } =
+        process.env.NODE_ENV === `development`
+            ? ghostConfig.development
+            : ghostConfig.production;
 
     if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
-        throw new Error(`GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`) // eslint-disable-line
+        throw new Error(
+            `GHOST_API_URL and GHOST_CONTENT_API_KEY are required to build. Check the README.`
+        ); // eslint-disable-line
     }
 }
 
 /**
-* This is the place where you can tell Gatsby which plugins to use
-* and set them up the way you want.
-*
-* Further info 👉🏼 https://www.gatsbyjs.org/docs/gatsby-config/
-*
-*/
+ * This is the place where you can tell Gatsby which plugins to use
+ * and set them up the way you want.
+ *
+ * Further info 👉🏼 https://www.gatsbyjs.org/docs/gatsby-config/
+ *
+ */
 module.exports = {
     siteMetadata: {
-        siteUrl: config.siteUrl,
+        siteUrl: config.siteUrl
     },
     plugins: [
         /**
@@ -41,8 +51,8 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: path.join(__dirname, `src`, `pages`),
-                name: `pages`,
-            },
+                name: `pages`
+            }
         },
         // Setup for optimised images.
         // See https://www.gatsbyjs.org/packages/gatsby-image/
@@ -50,8 +60,8 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: path.join(__dirname, `src`, `images`),
-                name: `images`,
-            },
+                name: `images`
+            }
         },
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
@@ -60,7 +70,7 @@ module.exports = {
             options:
                 process.env.NODE_ENV === `development`
                     ? ghostConfig.development
-                    : ghostConfig.production,
+                    : ghostConfig.production
         },
         /**
          *  Utility Plugins
@@ -86,8 +96,8 @@ module.exports = {
                         }
                     }
                 }
-              `,
-            },
+              `
+            }
         },
         {
             resolve: `gatsby-plugin-feed`,
@@ -104,10 +114,8 @@ module.exports = {
                     }
                 }
               `,
-                feeds: [
-                    generateRSSFeed(config),
-                ],
-            },
+                feeds: [generateRSSFeed(config)]
+            }
         },
         {
             resolve: `gatsby-plugin-advanced-sitemap`,
@@ -157,31 +165,43 @@ module.exports = {
                 }`,
                 mapping: {
                     allGhostPost: {
-                        sitemap: `posts`,
+                        sitemap: `posts`
                     },
                     allGhostTag: {
-                        sitemap: `tags`,
+                        sitemap: `tags`
                     },
                     allGhostAuthor: {
-                        sitemap: `authors`,
+                        sitemap: `authors`
                     },
                     allGhostPage: {
-                        sitemap: `pages`,
-                    },
+                        sitemap: `pages`
+                    }
                 },
                 exclude: [
                     `/dev-404-page`,
                     `/404`,
                     `/404.html`,
-                    `/offline-plugin-app-shell-fallback`,
+                    `/offline-plugin-app-shell-fallback`
                 ],
                 createLinkInHead: true,
-                addUncaughtPages: true,
-            },
+                addUncaughtPages: true
+            }
         },
         `gatsby-plugin-catch-links`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-offline`,
-    ],
-}
+        {
+            resolve: `gatsby-plugin-postcss`,
+            options: {
+                postCssPlugins: [
+                    easyimport,
+                    customProperties({ preserve: false }),
+                    colorFunction(),
+                    autoprefixer({ browsers: ["last 2 versions"] }),
+                    cssnano()
+                ]
+            }
+        }
+    ]
+};
