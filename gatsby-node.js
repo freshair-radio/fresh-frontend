@@ -90,7 +90,11 @@ exports.createPages = async ({ graphql, actions }) => {
         } else if (node.slug === `hash-show`) {
             node.url = `/shows/all/`;
             template = showsTemplate;
-        } else if (node.slug.startsWith(`hash-`)) {
+        } else if (
+            node.slug !== `hash-article` &&
+            node.slug !== `hash-podcast` &&
+            node.slug.startsWith(`hash-`)
+        ) {
             node.url = `/shows/${node.slug.slice(5)}/`;
             template = showTemplate;
         } else {
