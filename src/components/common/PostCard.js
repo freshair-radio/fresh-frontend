@@ -36,7 +36,7 @@ const PostCard = ({ post, idx }) => {
 
                     <section className="post-card-excerpt">
                         <p>
-                            {post.excerpt
+                            {(post.excerpt || "")
                                 .split(" ")
                                 .slice(0, 33)
                                 .join(" ")}
