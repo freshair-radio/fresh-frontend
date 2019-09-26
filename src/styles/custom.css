@@ -53,6 +53,7 @@ body .show-card .post-card-image {
     display: grid;
     grid-template-columns: 100px 1fr;
     position: relative;
+    width: 100%;
 }
 .podcast-card-title {
     margin-top: 0px;

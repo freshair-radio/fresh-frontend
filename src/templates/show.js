@@ -58,7 +58,13 @@ const Tag = ({ data, location, pageContext }) => {
                                     <PodcastCard
                                         key={node.id}
                                         podcast={node}
-                                        audio={new Audio(get_audio(node.html))}
+                                        audio={
+                                            typeof window !== `undefined`
+                                                ? new Audio(
+                                                      get_audio(node.html)
+                                                  )
+                                                : {}
+                                        }
                                         defaultImg={show.feature_image}
                                     />
                                 ))}
