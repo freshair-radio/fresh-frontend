@@ -5,7 +5,7 @@ import { readingTime as readingTimeHelper } from "@tryghost/helpers";
 
 const ShowCard = ({ show, idx, noLimit, noTitle, noLink }) => {
     const url = `/shows/${show.slug}/`;
-    const feature_image = show.feature_image || `/images/banner.jpg`;
+    const feature_image = show.feature_image || `/images/4x/Aspect.png`;
     return (
         <article
             className={`show-card post-card ${show.featured && "featured"} ${

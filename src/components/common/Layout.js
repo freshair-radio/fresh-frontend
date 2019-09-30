@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { Link, StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
-
+import useInterval from "./useInterval";
 import { Navigation } from ".";
 import config from "../../utils/siteConfig";
-
+import Player from "./Player";
 // Styles
 import "../../styles/global.css";
 import "../../styles/screen.css";
@@ -21,6 +21,13 @@ import "../../styles/custom.css";
  *
  */
 const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
+    const [bi, setBi] = React.useState({});
+    useInterval(async () => {
+        let bi = await fetch(
+            "https://freshair.org.uk/api/broadcast_info/"
+        ).then(r => r.json());
+        setBi(bi);
+    }, 1000);
     const site = data.allGhostSettings.edges[0].node;
     const twitterUrl = site.twitter
         ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
@@ -44,7 +51,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                     style={{
                         ...(site.cover_image &&
                             isHome && {
-                                backgroundImage: `url(${site.cover_image})`
+                                backgroundImage: `url(/images/4x/Aspect.png)`
                             })
                     }}
                 >
@@ -62,6 +69,31 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                     data={site.navigation}
                                     navClass="site-nav-item"
                                 />
+                                <div className="hamburger">
+                                    <input
+                                        type="checkbox"
+                                        name="menu"
+                                        id="menu"
+                                    />
+                                    <label htmlFor="menu" className="close">
+                                        <img
+                                            className="site-menu-close"
+                                            src="/images/icons/times.svg"
+                                            alt={site.title}
+                                        />
+                                    </label>
+                                    <label htmlFor="menu" className="open">
+                                        <img
+                                            className="site-menu"
+                                            src="/images/icons/bars.svg"
+                                            alt={site.title}
+                                        />
+                                    </label>
+                                    <Navigation
+                                        data={site.navigation}
+                                        navClass="site-nav-item"
+                                    />
+                                </div>
                             </div>
                             <div className="site-nav-right">
                                 <div className="social-links"></div>
@@ -81,6 +113,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                         </section>
                     </div>
                 </footer>
+                <div className="player">
+                    <Player bi={bi} />
+                </div>
             </div>
         </>
     );

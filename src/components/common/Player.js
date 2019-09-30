@@ -3,39 +3,34 @@ import { useState } from "react";
 import { Link } from "gatsby";
 import { Tags } from "@tryghost/helpers-gatsby";
 import { readingTime as readingTimeHelper } from "@tryghost/helpers";
-const PodcastCard = ({ audio, podcast, defaultImg, idx }) => {
-    const url = `/posts/${podcast.slug}/`;
-    const [isPlaying, setIsPlaying] = useState(false);
+const Player = ({ bi }) => {
+    const isAlreadyPlaying =
+        typeof window !== `undefined` && window.radio
+            ? !window.radio.paused
+            : false;
+    const [isPlaying, setIsPlaying] = useState(isAlreadyPlaying);
     const play = () => {
         setIsPlaying(true);
-        audio.play();
+        window.radio = new Audio("https://localhost:7878/radio");
+        window.radio.play();
     };
     const pause = () => {
         setIsPlaying(false);
-        audio.pause();
+        window.radio.pause();
+        window.radio = new Audio("");
     };
     return (
         <article className={`podcast-card`}>
-            {podcast.feature_image ? (
-                <div
-                    className="podcast-card-image"
-                    style={{
-                        backgroundImage: `url(${podcast.feature_image})`,
-                        backgroundSize: `cover`,
-                        backgroundPosition: `center`
-                    }}
-                ></div>
-            ) : (
-                <div
-                    className="podcast-card-image"
-                    style={{
-                        backgroundImage: `url(${defaultImg ||
-                            `/images/4x/Aspect.png`})`,
-                        backgroundSize: `cover`,
-                        backgroundPosition: `center`
-                    }}
-                ></div>
-            )}
+            <div
+                className="podcast-card-image"
+                style={{
+                    backgroundImage: `url(${bi.pic ||
+                        `/images/4x/Aspect.png`})`,
+                    backgroundSize: `cover`,
+                    backgroundPosition: `center`
+                }}
+            ></div>
+
             {isPlaying ? (
                 <div className="control-overlay" onMouseDown={pause}>
                     <img src="/images/icons/pause.svg" />
@@ -47,12 +42,16 @@ const PodcastCard = ({ audio, podcast, defaultImg, idx }) => {
             )}
             <div className="podcast-card-content">
                 <header className="podcast-card-header">
-                    <h2 className="podcast-card-title">{podcast.title}</h2>
+                    <h2 className="podcast-card-title">
+                        {bi.title
+                            ? `Live Now: ${bi.title}`
+                            : "Freshair Playlist"}
+                    </h2>
                 </header>
 
                 <section className="podcast-card-excerpt">
                     <p>
-                        {podcast.excerpt
+                        {(bi.status || "")
                             .split(" ")
                             .slice(0, 33)
                             .join(" ")}
@@ -63,4 +62,4 @@ const PodcastCard = ({ audio, podcast, defaultImg, idx }) => {
     );
 };
 
-export default PodcastCard;
+export default Player;
