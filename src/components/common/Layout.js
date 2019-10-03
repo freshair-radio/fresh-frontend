@@ -23,11 +23,11 @@ import "../../styles/custom.css";
 const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const [bi, setBi] = React.useState({});
     useInterval(async () => {
-        let bi = await fetch(
-            "https://freshair.org.uk/api/broadcast_info/"
-        ).then(r => r.json());
+        let bi = await fetch("https://nowplaying.freshair.org.uk").then(r =>
+            r.json()
+        );
         setBi(bi);
-    }, 1000);
+    }, 3000);
     const site = data.allGhostSettings.edges[0].node;
     const twitterUrl = site.twitter
         ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`

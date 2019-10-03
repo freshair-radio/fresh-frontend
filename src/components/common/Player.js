@@ -11,7 +11,7 @@ const Player = ({ bi }) => {
     const [isPlaying, setIsPlaying] = useState(isAlreadyPlaying);
     const play = () => {
         setIsPlaying(true);
-        window.radio = new Audio("https://localhost:7878/radio");
+        window.radio = new Audio("https://radio.freshair.org.uk/radio");
         window.radio.play();
     };
     const pause = () => {
