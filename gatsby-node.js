@@ -93,6 +93,7 @@ exports.createPages = async ({ graphql, actions }) => {
         } else if (
             node.slug !== `hash-article` &&
             node.slug !== `hash-podcast` &&
+            !node.slug.endsWith("star") &&
             node.slug.startsWith(`hash-`)
         ) {
             node.url = `/shows/${node.slug.slice(5)}/`;

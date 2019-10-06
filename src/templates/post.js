@@ -15,7 +15,6 @@ import BylineSingle from "../components/common/BylineSingle";
  */
 const Post = ({ data, location }) => {
     const post = data.ghostPost;
-    console.log(data, location);
     return (
         <>
             <MetaData data={data} location={location} type="article" />
