@@ -152,9 +152,9 @@ body .site-header-content {
     position: fixed;
     background: rgb(247, 164, 45);
     width: 100vw;
-    top: 60px;
+    top: 0px;
     left: 0px;
-    height: calc(100vh - 60px);
+    height: 100vh;
     margin: 0px;
     display: none;
 }
@@ -231,4 +231,9 @@ body .site-footer {
 }
 .copyright a {
     color: black;
+}
+
+.close {
+    position: relative;
+    z-index: 99;
 }

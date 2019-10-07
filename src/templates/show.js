@@ -24,7 +24,6 @@ const Tag = ({ data, location, pageContext }) => {
     const regex = /<audio src="(.*?)"/;
     const get_audio = html => {
         let m = html.match(regex);
-        console.log(m);
         return m ? m[1] : "";
     };
     return (
