@@ -20,7 +20,7 @@ const Tag = ({ data, location, pageContext }) => {
             <MetaData data={data} location={location} type="series" />
             <Layout>
                 <div className="inner">
-                    <header className="tag-header">
+                    <header className="m-top tag-header">
                         <h1>{tag.name}</h1>
                         {tag.description ? <p>{tag.description}</p> : null}
                     </header>
