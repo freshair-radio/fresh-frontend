@@ -237,3 +237,8 @@ body .site-footer {
     position: relative;
     z-index: 99;
 }
+
+.rating img {
+    height: 30px;
+    margin-top: 2vw;
+}

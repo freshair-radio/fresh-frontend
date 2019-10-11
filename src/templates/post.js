@@ -15,6 +15,17 @@ import BylineSingle from "../components/common/BylineSingle";
  */
 const Post = ({ data, location }) => {
     const post = data.ghostPost;
+    console.log(post);
+    const rating = post.tags.find(
+        t => t.slug.endsWith("star") || t.slug.endsWith("stars")
+    );
+    const stars = rating ? rating.slug.split("-")[1] : null;
+    const half = stars
+        ? rating.slug.split("-")[2] == "5"
+            ? true
+            : false
+        : false;
+    const empty = stars ? 5 - parseInt(stars) - (half ? 1 : 0) : null;
     return (
         <>
             <MetaData data={data} location={location} type="article" />
@@ -37,6 +48,19 @@ const Post = ({ data, location }) => {
                                 </time>
                             </section>
                             <h1 className="post-full-title">{post.title}</h1>
+                            {stars && (
+                                <span class="rating">
+                                    {[...Array(parseInt(stars))].map(n => (
+                                        <img src="/images/icons/star.svg"></img>
+                                    ))}
+                                    {half && (
+                                        <img src="/images/icons/star-half.svg"></img>
+                                    )}
+                                    {[...Array(empty)].map(n => (
+                                        <img src="/images/icons/star-empty.svg"></img>
+                                    ))}
+                                </span>
+                            )}
                         </header>
                         {post.feature_image && (
                             <figure className="post-full-image">
