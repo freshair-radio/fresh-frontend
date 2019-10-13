@@ -15,8 +15,8 @@ import PodcastCard from "../components/common/PodcastCard";
 const Tag = ({ data, location, pageContext }) => {
     const tag = data.ghostTag;
     const posts = data.allGhostPost.edges;
-    const show = posts.find(p => p.node.tags.find(t => t.slug == "hash-show"))
-        .node;
+    let show = posts.find(p => p.node.tags.find(t => t.slug == "hash-show"));
+    show = show ? show.node : null;
     const podcasts = posts.filter(p =>
         p.node.tags.find(t => t.slug == "hash-podcast")
     );
@@ -26,7 +26,7 @@ const Tag = ({ data, location, pageContext }) => {
         let m = html.match(regex);
         return m ? m[1] : "";
     };
-    return (
+    return !show ? null : (
         <>
             <MetaData data={data} location={location} type="series" />
             <Layout>

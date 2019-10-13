@@ -15,7 +15,6 @@ import BylineSingle from "../components/common/BylineSingle";
  */
 const Post = ({ data, location }) => {
     const post = data.ghostPost;
-    console.log(post);
     const rating = post.tags.find(
         t => t.slug.endsWith("star") || t.slug.endsWith("stars")
     );
