@@ -48,6 +48,7 @@
     "gatsby-plugin-catch-links": "2.1.9",
     "gatsby-plugin-feed": "2.3.12",
     "gatsby-plugin-force-trailing-slashes": "1.0.4",
+    "gatsby-plugin-google-analytics": "^2.1.21",
     "gatsby-plugin-manifest": "2.2.17",
     "gatsby-plugin-offline": "3.0.7",
     "gatsby-plugin-postcss": "^2.1.8",

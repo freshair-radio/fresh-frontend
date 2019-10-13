@@ -202,6 +202,15 @@ module.exports = {
                     cssnano()
                 ]
             }
+        },
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: "UA-40410225-2",
+                anonymize: true,
+                respectDNT: true,
+                allowAdFeatures: false
+            }
         }
     ]
 };
