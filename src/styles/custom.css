@@ -252,3 +252,15 @@ body .site-footer {
 .description.post-full-content::before {
     display: none;
 }
+#site-main,
+.site-footer.outer {
+    background: #faa43a;
+}
+.pagination,
+.pagination a,
+.site-footer,
+.copyright,
+.copyright a,
+.tag-header {
+    color: white;
+}
