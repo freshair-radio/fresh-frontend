@@ -244,3 +244,11 @@ body .site-footer {
     height: 30px;
     margin-top: 2vw;
 }
+.description.post-full-content {
+    padding-top: 0px;
+    background: transparent;
+}
+.description.post-full-content::after,
+.description.post-full-content::before {
+    display: none;
+}

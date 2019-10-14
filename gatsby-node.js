@@ -92,6 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
             template = showsTemplate;
         } else if (
             node.slug !== `hash-article` &&
+            node.slug !== `hash-description` &&
             node.slug !== `hash-podcast` &&
             !node.slug.endsWith("star") &&
             !node.slug.endsWith("stars") &&
