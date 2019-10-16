@@ -63,6 +63,20 @@ module.exports = {
                 name: `images`
             }
         },
+        {
+            resolve: `gatsby-source-youtube-v2`,
+            options: {
+                channelId: "UCW_-tO82U5mgAf70nJkS0MQ",
+                apiKey: "AIzaSyDx3-hxXyZV74iE6ou57SlyWxSVgQHqZJg",
+                maxVideos: 50 // Defaults to 50
+            }
+        },
+        {
+            resolve: `gatsby-source-instagram`,
+            options: {
+                username: `freshairradio`
+            }
+        },
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         {

@@ -350,7 +350,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     fill: #fff;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .site-header {
         padding-right: 0;
         padding-left: 0;

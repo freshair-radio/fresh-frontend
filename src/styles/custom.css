@@ -137,7 +137,7 @@ body .site-header-content {
 .hamburger .nav {
     display: none;
 }
-@media (max-width: 500px) {
+@media (max-width: 800px) {
     .site-nav-left > .nav {
         display: none;
     }
@@ -205,20 +205,24 @@ label.open {
 }
 .player {
     position: fixed;
-    width: 100vw;
-    bottom: 0px;
+    width: 100%;
+    max-width: 700px;
+    bottom: 20px;
     left: 0px;
     z-index: 999;
+    margin-left: calc(50% - 350px);
+    margin-right: calc(50% - 350px);
 }
 .player .podcast-card {
     margin: 0px;
-    border-radius: 0px;
+    border-radius: 20px;
     box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
         1px 3px 20px rgba(39, 44, 49, 0.08);
     /* background: rgb(247, 164, 45); */
     /* color: white; */
     /* min-height: 50px; */
 }
+
 body {
     margin-bottom: 64px;
 }
@@ -244,6 +248,15 @@ body .site-footer {
     height: 30px;
     margin-top: 2vw;
 }
+.rating.small img {
+    height: 20px;
+    margin-top: 0px;
+    margin-top: 1vw;
+}
+.rating.small {
+    padding: 15px;
+    padding-bottom: 0;
+}
 .description.post-full-content {
     padding-top: 0px;
     background: transparent;
@@ -261,6 +274,159 @@ body .site-footer {
 .site-footer,
 .copyright,
 .copyright a,
-.tag-header {
+.tag-header,
+.post-full-title {
     color: white;
+}
+.tag-header,
+.post-card-header,
+.post-full-title,
+.inner .latest {
+    text-transform: uppercase;
+}
+.page-template .post-full-content {
+    background: #faa43a;
+    color: white;
+}
+
+.page-template .post-full-content strong {
+    color: white;
+}
+.page-template .post-full-content a,
+.inner .latest {
+    color: white;
+}
+.author-card-content p,
+.author-card-name a,
+.post-full-meta-date {
+    color: white;
+}
+.author-card-button {
+    color: white;
+    border: 1px solid #fff;
+}
+.show-grid-item .post-card-image-link {
+    height: 100%;
+    border-radius: 0px;
+    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
+        1px 3px 8px rgba(39, 44, 49, 0.03);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.show-grid-item .post-card-image {
+    height: 100%;
+    grid-row: 1;
+    grid-column: 1;
+}
+.show-grid-item .post-card-content {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: end;
+}
+.show-grid-item {
+    margin: 0 10px 20px;
+    border-radius: 0px;
+    background: transparent;
+    box-shadow: none;
+}
+.show-grid-item .post-card-content-link {
+    padding: 0px;
+    /* padding-bottom: 15px; */
+    background: rgba(255, 255, 255, 0.7);
+}
+.show-grid-item .post-card-title {
+    margin: 0px;
+    padding: 15px;
+}
+body .show-grid-item:hover {
+    transform: scale(1.02);
+}
+.show-grid-item {
+    min-height: 250px;
+}
+a:hover {
+    text-decoration: none;
+}
+.show-grid-item.post-card {
+    flex: 1 1 250px;
+}
+.show-grid-item.wide.post-card {
+    flex: 1 1 400px;
+}
+.wee-sessions.post-feed iframe {
+    width: 100%;
+}
+.description {
+    color: white;
+}
+.post-card-large h2 {
+    font-size: 2rem;
+}
+
+body.home-template .post-feed.instagram {
+    margin-top: 0px !important;
+}
+.post-feed,
+.post-feed.show {
+    padding-top: 0px;
+}
+.post-feed.instagram article {
+    max-height: 250px;
+}
+.post-feed.instagram article .insta-link,
+.post-feed.instagram article .insta {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.inner.get-in-touch {
+    text-transform: none;
+    font-size: 2rem;
+    max-width: 700px;
+}
+input,
+textarea,
+button {
+    background: none;
+    border: none;
+    background: white;
+    padding: 0px;
+    margin: 0px;
+    color: black;
+    padding: 10px;
+
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 200px;
+    display: block;
+    margin: 10px;
+    resize: none;
+    display: inline-block;
+    min-width: 60%;
+    max-width: calc(100% - 20px);
+}
+textarea {
+    border-radius: 20px;
+}
+.middle {
+    text-align: center;
+}
+button {
+    background: black;
+    color: white;
+}
+body {
+    background: #faa43a;
+}
+@media (max-width: 740px) {
+    .player {
+        margin: 0px;
+        bottom: 0px;
+        width: 100vw !important;
+        max-width: 100vw;
+    }
+    .player .podcast-card {
+        border-radius: 0px;
+    }
 }

@@ -1,7 +1,7 @@
 module.exports = {
     siteUrl: `https://freshair.org.uk`, // Site domain. Do not include a trailing slash!
 
-    postsPerPage: 12, // Number of posts shown on paginated pages (changes this requires sometimes to delete the cache)
+    postsPerPage: 300, // Number of posts shown on paginated pages (changes this requires sometimes to delete the cache)
 
     siteTitleMeta: `FreshAir.org.uk`, // This allows an alternative site title for meta data for pages.
     siteDescriptionMeta: `Student Radio from Scotland's Capital`, // This allows an alternative site description for meta data for pages.

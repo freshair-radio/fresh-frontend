@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 
 import { Layout, PostCard, Pagination } from "../components/common";
 import { MetaData } from "../components/common/meta";
-import ShowCard from "../components/common/ShowCard";
+import ShowGridItem from "../components/common/ShowGridItem";
 /**
  * Tag page (/tag/:slug)
  *
@@ -13,7 +13,12 @@ import ShowCard from "../components/common/ShowCard";
  */
 const Tag = ({ data, location, pageContext }) => {
     const tag = data.ghostTag;
-    const posts = data.allGhostPost.edges;
+    const hub_shows = data.allGhostPost.edges.filter(
+        ({ node }) => !!node.tags.find(t => t.slug == "hash-hub")
+    );
+    const other_shows = data.allGhostPost.edges.filter(
+        ({ node }) => !node.tags.find(t => t.slug == "hash-hub")
+    );
 
     return (
         <>
@@ -25,9 +30,13 @@ const Tag = ({ data, location, pageContext }) => {
                         {tag.description ? <p>{tag.description}</p> : null}
                     </header>
                     <section className="post-feed">
-                        {posts.map(({ node }) => (
+                        {hub_shows.map(({ node }) => (
                             // The tag below includes the markup for each post - components/common/PostCard.js
-                            <ShowCard key={node.id} show={node} />
+                            <ShowGridItem key={node.id} show={node} />
+                        ))}
+                        {other_shows.map(({ node }) => (
+                            // The tag below includes the markup for each post - components/common/PostCard.js
+                            <ShowGridItem key={node.id} show={node} />
                         ))}
                     </section>
                     <Pagination pageContext={pageContext} />

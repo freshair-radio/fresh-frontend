@@ -75,6 +75,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const showTemplate = path.resolve(`./src/templates/show.js`);
     const showsTemplate = path.resolve(`./src/templates/shows.js`);
     const teamTemplate = path.resolve(`./src/templates/team.js`);
+    const weeTemplate = path.resolve(`./src/templates/weesessions.js`);
 
     // Create tag pages
     tags.forEach(({ node }) => {
@@ -84,6 +85,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
         // This part here defines, that our tag pages will use
         // a `/tag/:slug/` permalink.
+        // if (node.slug === `hash-wee-sessions-team`) {
+        //     node.url = `/wee-sessions/`;
+        //     template = weeTemplate;
+        // } else
         if (node.slug.startsWith(`hash-`) && node.slug.endsWith(`team`)) {
             node.url = `/teams/${node.slug.slice(5, -5)}/`;
             template = teamTemplate;

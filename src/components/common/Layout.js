@@ -27,7 +27,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
             r.json()
         );
         setBi(bi);
-    }, 3000);
+    }, 30000);
     const site = data.allGhostSettings.edges[0].node;
     const twitterUrl = site.twitter
         ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`

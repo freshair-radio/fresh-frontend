@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import YouTube from "react-youtube";
 
 import { Layout, PostCard, Pagination } from "../components/common";
 import { MetaData } from "../components/common/meta";
-
+import ShowCard from "../components/common/ShowCard";
+import PodcastCard from "../components/common/PodcastCard";
 /**
  * Tag page (/tag/:slug)
  *
@@ -14,13 +16,31 @@ import { MetaData } from "../components/common/meta";
 const Tag = ({ data, location, pageContext }) => {
     const tag = data.ghostTag;
     const o_posts = data.allGhostPost.edges;
+    const videos = data.allYoutubeVideo.edges;
     const posts = o_posts.filter(
-        ({ node }) => !node.tags.find(t => t.slug == "hash-description")
+        ({ node }) =>
+            !node.tags.find(t => t.slug == "hash-description") &&
+            node.tags.find(t => t.slug == "hash-article")
     );
+
     let description = o_posts
         .map(({ node }) => node)
         .find(p => p.tags.find(t => t.slug == "hash-description"));
 
+    let hub_show = o_posts
+        .map(({ node }) => node)
+        .find(p => p.tags.find(t => t.slug == "hash-show"));
+    const podcasts = hub_show
+        ? o_posts.filter(({ node }) =>
+              node.tags.find(t => t.slug == "hash-podcast")
+          )
+        : [];
+    const regex = /<audio src="(.*?)"/;
+    const get_audio = html => {
+        let m = html.match(regex);
+        return m ? m[1] : "";
+    };
+    console.log(tag.slug);
     return (
         <>
             <MetaData data={data} location={location} type="series" />
@@ -30,7 +50,7 @@ const Tag = ({ data, location, pageContext }) => {
                         <h1>{tag.name.slice(1)}</h1>
                         {tag.description ? <p>{tag.description}</p> : null}
                     </header>
-                    {description && (
+                    {description ? (
                         <section className="post-full-content description">
                             <div
                                 className="post-content load-external-scripts"
@@ -39,13 +59,79 @@ const Tag = ({ data, location, pageContext }) => {
                                 }}
                             />
                         </section>
+                    ) : (
+                        hub_show && (
+                            <>
+                                <div className="inner">
+                                    <div className="show-description">
+                                        <ShowCard
+                                            key={hub_show.id}
+                                            show={{
+                                                ...hub_show,
+                                                featured: true
+                                            }}
+                                            idx={0}
+                                            noLimit
+                                            noTitle
+                                            noLink
+                                        />
+                                    </div>
+                                </div>
+                                {!!podcasts.length && (
+                                    <div className="inner">
+                                        <h2 className="latest">
+                                            Latest Podcasts
+                                        </h2>
+
+                                        <section className="post-feed show">
+                                            {podcasts.map(({ node }) => (
+                                                // The tag below includes the markup for each post - components/common/PostCard.js
+                                                <PodcastCard
+                                                    key={node.id}
+                                                    podcast={node}
+                                                    audio={
+                                                        typeof window !==
+                                                        `undefined`
+                                                            ? new Audio(
+                                                                  get_audio(
+                                                                      node.html
+                                                                  )
+                                                              )
+                                                            : {}
+                                                    }
+                                                    defaultImg={
+                                                        hub_show.feature_image
+                                                    }
+                                                />
+                                            ))}
+                                        </section>
+                                    </div>
+                                )}
+                            </>
+                        )
                     )}
-                    <section className="post-feed">
-                        {posts.map(({ node }) => (
-                            // The tag below includes the markup for each post - components/common/PostCard.js
-                            <PostCard key={node.id} post={node} />
-                        ))}
-                    </section>
+                    {tag.slug == "hash-wee-sessions-team" ? (
+                        <section className="post-feed wee-sessions">
+                            {videos.map(({ node }) => (
+                                <section
+                                    class={`show-grid-item wide post-card`}
+                                >
+                                    <YouTube videoId={node.videoId} />
+                                </section>
+                            ))}
+                        </section>
+                    ) : (
+                        <>
+                            <h2 className="latest">Latest Posts</h2>
+
+                            <section className="post-feed">
+                                {posts.map(({ node }) => (
+                                    // The tag below includes the markup for each post - components/common/PostCard.js
+                                    <PostCard key={node.id} post={node} />
+                                ))}
+                            </section>
+                        </>
+                    )}
                     <Pagination pageContext={pageContext} />
                 </div>
             </Layout>
@@ -83,6 +169,13 @@ export const pageQuery = graphql`
             edges {
                 node {
                     ...GhostPostFields
+                }
+            }
+        }
+        allYoutubeVideo(limit: 6) {
+            edges {
+                node {
+                    videoId
                 }
             }
         }
