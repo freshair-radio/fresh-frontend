@@ -137,14 +137,14 @@ body .site-header-content {
 .hamburger .nav {
     display: none;
 }
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .site-nav-left > .nav {
         display: none;
     }
     .hamburger {
         display: block;
     }
-}
+} */
 #menu:checked ~ .nav {
     display: block;
 }
@@ -367,6 +367,9 @@ a:hover {
 body.home-template .post-feed.instagram {
     margin-top: 0px !important;
 }
+body.home-template .post-feed {
+    margin-top: 0px !important;
+}
 .post-feed,
 .post-feed.show {
     padding-top: 0px;
@@ -429,4 +432,229 @@ body {
     .player .podcast-card {
         border-radius: 0px;
     }
+}
+@media (max-width: 500px) {
+    .m-top {
+        margin-top: 20vw;
+    }
+}
+@media (max-width: 450px) {
+    .m-top {
+        margin-top: 30vw;
+    }
+}
+body.Arts .site-wrapper {
+    background: url("/images/arts.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+body.Arts .site-header {
+    background: none;
+}
+body.Arts #site-main {
+    background: none;
+}
+body.Arts .m-top {
+    margin-top: 25vw;
+}
+body.Arts .open {
+    background: black;
+    border-radius: 25%;
+}
+
+body.Arts .tag-header {
+    color: black;
+}
+body.Arts .tag-header {
+    color: black;
+    visibility: visible;
+    text-align: center;
+}
+body.Arts .tag-header h1 {
+    font-size: 5rem;
+    background: rgb(247, 164, 45);
+    color: black;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0.8;
+    display: inline;
+}
+body.News .site-wrapper {
+    background: url("/images/news.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+body.News .site-header {
+    background: none;
+}
+body.News #site-main {
+    background: none;
+}
+body.News .m-top {
+    margin-top: 25vw;
+}
+body.News .open {
+    background: black;
+    border-radius: 25%;
+}
+
+body.News .tag-header {
+    color: black;
+}
+body.News .tag-header {
+    color: black;
+    visibility: visible;
+    text-align: center;
+}
+body.News .tag-header h1 {
+    font-size: 5rem;
+    background: rgb(247, 164, 45);
+    color: black;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0.8;
+    display: inline;
+}
+body.Music .site-wrapper {
+    background: url("/images/music2.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+body.Music .site-header {
+    background: none;
+}
+body.Music #site-main {
+    background: none;
+}
+body.Music .m-top {
+    margin-top: 25vw;
+}
+body.Music .open {
+    background: black;
+    border-radius: 25%;
+}
+body.Music .site-nav-item,
+body.Arts .site-nav-item,
+body.News .site-nav-item,
+body.home-template .site-nav-item,
+.site-nav-item {
+    color: black;
+    background: rgb(247, 164, 45);
+    border-radius: 50px;
+    margin: 4px;
+    font-weight: bold;
+}
+body.Music .tag-header {
+    color: black;
+    visibility: hidden;
+}
+body.News .latest,
+body.Arts .latest {
+    color: black;
+}
+body.Music .description span {
+    color: black;
+    background: rgb(247, 164, 45);
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    opacity: 0.8;
+    font-weight: bold;
+}
+body.Music iframe {
+    width: 100%;
+}
+@media (max-width: 800px) {
+    body.home-template .site-header {
+        background-position-y: 40px;
+    }
+}
+@media (max-width: 700px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: 120%;
+    }
+    body.home-template .site-header {
+        background-position-y: 90px;
+        max-height: 60vw;
+    }
+}
+@media (max-width: 600px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: 130%;
+    }
+}
+@media (max-width: 550px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: 160%;
+    }
+    body.Music .m-top {
+        margin-top: 40vw;
+    }
+}
+@media (max-width: 500px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: 180%;
+    }
+    body.home-template .site-header {
+        background-position-y: 100px;
+        max-height: 70vw;
+    }
+}
+@media (max-width: 410px) {
+    body.home-template .site-header {
+        background-position-y: 160px;
+        max-height: 100vw;
+    }
+}
+@media (max-width: 400px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: 200%;
+    }
+    body.Music .site-nav-logo,
+    body.Arts .site-nav-logo {
+        display: none;
+    }
+    body.Arts .m-top {
+        margin-top: 50vw;
+    }
+}
+@media (max-width: 350px) {
+    body.Music .site-wrapper {
+        background-position: top;
+        background-size: contain;
+    }
+    body.Music .site-nav-logo {
+        display: none;
+    }
+    body.Music .tag-header {
+        color: black;
+        visibility: visible;
+        text-align: center;
+    }
+    body.Music .tag-header h1 {
+        font-size: 5rem;
+        background: rgb(247, 164, 45);
+        border-radius: 50px;
+        color: black;
+        padding-left: 20px;
+        padding-right: 20px;
+        opacity: 0.8;
+        display: inline;
+    }
+    body.Music .m-top {
+        margin-top: 60vw;
+    }
+}
+.team.post-feed {
+    margin-top: 60px;
+}
+.site-wrapper {
+    min-height: 100vw;
 }
