@@ -433,18 +433,24 @@ body {
         border-radius: 0px;
     }
 }
+body.News .m-top {
+    margin-top: 25vw;
+}
 @media (max-width: 500px) {
-    .m-top {
+    body.News .m-top {
         margin-top: 20vw;
     }
 }
 @media (max-width: 450px) {
-    .m-top {
-        margin-top: 30vw;
+    body.News .m-top {
+        margin-top: 40vw;
+    }
+    html body.Arts .m-top {
+        margin-top: 50vw;
     }
 }
 body.Arts .site-wrapper {
-    background: url("/images/arts.png");
+    background: url("/images/arts.jpg");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -471,17 +477,16 @@ body.Arts .tag-header {
     text-align: center;
 }
 body.Arts .tag-header h1 {
-    font-size: 5rem;
+    font-size: 6rem;
     background: rgb(247, 164, 45);
     color: black;
     border-radius: 50px;
     padding-left: 20px;
     padding-right: 20px;
-    opacity: 0.8;
     display: inline;
 }
 body.News .site-wrapper {
-    background: url("/images/news.png");
+    background: url("/images/news.jpg");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -491,9 +496,7 @@ body.News .site-header {
 body.News #site-main {
     background: none;
 }
-body.News .m-top {
-    margin-top: 25vw;
-}
+
 body.News .open {
     background: black;
     border-radius: 25%;
@@ -508,13 +511,12 @@ body.News .tag-header {
     text-align: center;
 }
 body.News .tag-header h1 {
-    font-size: 5rem;
+    font-size: 6rem;
     background: rgb(247, 164, 45);
     color: black;
     border-radius: 50px;
     padding-left: 20px;
     padding-right: 20px;
-    opacity: 0.8;
     display: inline;
 }
 body.Music .site-wrapper {
@@ -617,22 +619,17 @@ body.Music iframe {
         background-position: top;
         background-size: 200%;
     }
-    body.Music .site-nav-logo,
-    body.Arts .site-nav-logo {
+    body .site-nav-logo,
+    body .site-nav-logo {
         display: none;
     }
-    body.Arts .m-top {
-        margin-top: 50vw;
-    }
 }
-@media (max-width: 350px) {
+@media (max-width: 440px) {
     body.Music .site-wrapper {
         background-position: top;
         background-size: contain;
     }
-    body.Music .site-nav-logo {
-        display: none;
-    }
+
     body.Music .tag-header {
         color: black;
         visibility: visible;
