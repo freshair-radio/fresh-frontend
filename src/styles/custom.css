@@ -265,6 +265,10 @@ body .site-footer {
 .description.post-full-content::before {
     display: none;
 }
+.faq.post-full-content::after,
+.faq.post-full-content::before {
+    display: none;
+}
 #site-main,
 .site-footer.outer {
     background: #faa43a;
@@ -654,4 +658,7 @@ body.Music iframe {
 }
 .site-wrapper {
     min-height: 100vw;
+}
+.faq h2 {
+    color: white;
 }
