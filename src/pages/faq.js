@@ -66,6 +66,12 @@ const FAQ = ({ data, location, pageContext }) => {
                                         username “.\freshair” and password
                                         “freshair”
                                     </li>
+                                    <li>
+                                        A black application might flash up for a
+                                        second or less - it's really important
+                                        that this isn't closed. It'll close
+                                        itself after a second or so.
+                                    </li>
                                     <li>Open up Firefox</li>
                                     <li>
                                         Go to{" "}
