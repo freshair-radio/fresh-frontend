@@ -61,14 +61,14 @@ const ReportIssue = ({ data, location, pageContext }) => {
                                     ></input>
                                     <input
                                         class="email-input"
-                                        placeholder="Your show..."
+                                        placeholder="Your email..."
                                         value={show}
                                         onChange={e => setShow(e.target.value)}
                                     ></input>
                                     <textarea
                                         rows="5"
                                         class="message-input"
-                                        placeholder="What's wrong? Please include as much detail as you can"
+                                        placeholder="What's wrong? Please include your show name, and as much detail as you can"
                                         value={message}
                                         onChange={e =>
                                             setMessage(e.target.value)
