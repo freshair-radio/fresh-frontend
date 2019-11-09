@@ -662,3 +662,19 @@ body.Music iframe {
 .faq h2 {
     color: white;
 }
+.aoy::after,
+.aoy::before {
+    display: none;
+}
+.aoy {
+    padding: 0px;
+    min-height: auto;
+}
+.aoy .album-input {
+    min-width: calc(100% - 140px);
+}
+.aoy .album-submit {
+    display: inline-block;
+    min-width: 100px;
+    width: 100px;
+}

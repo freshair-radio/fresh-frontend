@@ -16,13 +16,49 @@ import InstagramEmbed from "react-instagram-embed";
 const Index = ({ data, location, pageContext }) => {
     const posts = data.allGhostPost.edges.slice(0, 4);
     const instas = data.allInstaNode.edges;
-    const events = data.events.edges;
-
+    const events = data.events.edges.slice(0, 4);
+    const [album, setAlbum] = React.useState("");
+    const [sent, setSent] = React.useState(false);
+    const submit = () => {
+        setSent(true);
+        fetch("https://bugreport.freshair.org.uk", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                name: "A FreshAir fan",
+                show: "album@freshair.dev",
+                message: `I vote for "${album}" as Album of the Year`
+            })
+        });
+    };
     return (
         <>
             <MetaData location={location} />
             <Layout isHome={true} bodyClass="home-template">
                 <div className="inner">
+                    <h2 className="latest album-of-the-year">
+                        What was your "Album of the Year"? Let us know!
+                    </h2>
+                    <div class="post-full-content aoy">
+                        {sent ? (
+                            <p style={{ padding: "20px" }}>Thanks!</p>
+                        ) : (
+                            <>
+                                <input
+                                    class="album-input"
+                                    placeholder="My Favourite Nursery Rhymes by the Funsong band"
+                                    value={album}
+                                    onChange={e => setAlbum(e.target.value)}
+                                ></input>
+                                <button class="album-submit" onClick={submit}>
+                                    Send
+                                </button>
+                            </>
+                        )}
+                    </div>
+
                     {!!events.length && (
                         <>
                             <h2 className="latest">Events</h2>
