@@ -42,10 +42,12 @@ const GetInTouch = ({ data, location, pageContext }) => {
                         <h1>Get in Touch</h1>
                         <section class="inner get-in-touch">
                             <p>
-                                Do you have some ideas for us? Some music for us
-                                to check out? Anything else? Just fill out this
-                                form and we'll get back to you as soon as we
-                                can!
+                                For music enquiries please email{" "}
+                                <a href="mailto:music@freshair.org.uk">
+                                    music@freshair.org.uk
+                                </a>
+                                . For anything else, just fill out this form and
+                                we'll get back to you as soon as we can!
                             </p>
                             {done ? (
                                 <div class="middle">
