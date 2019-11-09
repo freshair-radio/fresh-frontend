@@ -5,6 +5,8 @@ import { graphql } from "gatsby";
 import { Layout, PostCard, Pagination } from "../components/common";
 import { MetaData } from "../components/common/meta";
 import InstagramEmbed from "react-instagram-embed";
+import YouTube from "react-youtube";
+
 /**
  * Main index page (home page)
  *
@@ -15,6 +17,8 @@ import InstagramEmbed from "react-instagram-embed";
  */
 const Index = ({ data, location, pageContext }) => {
     const posts = data.allGhostPost.edges.slice(0, 4);
+    const videos = data.allYoutubeVideo.edges;
+
     const instas = data.allInstaNode.edges;
     const events = data.events.edges.slice(0, 4);
     const [album, setAlbum] = React.useState("");
@@ -39,7 +43,7 @@ const Index = ({ data, location, pageContext }) => {
             <Layout isHome={true} bodyClass="home-template">
                 <div className="inner">
                     <h2 className="latest album-of-the-year">
-                        What was your "Album of the Year"? Let us know!
+                        What was your "Album of the Decade"? Let us know!
                     </h2>
                     <div class="post-full-content aoy">
                         {sent ? (
@@ -90,6 +94,15 @@ const Index = ({ data, location, pageContext }) => {
                             </article>
                         ))}
                     </div>
+                    <h2 className="latest">Wee Sessions</h2>
+
+                    <section className="post-feed wee-sessions">
+                        {videos.map(({ node }) => (
+                            <section class={`show-grid-item wide post-card`}>
+                                <YouTube videoId={node.videoId} />
+                            </section>
+                        ))}
+                    </section>
                     <h2 className="latest">Latest articles</h2>
 
                     <div className="post-feed">
@@ -174,6 +187,13 @@ export const pageQuery = graphql`
                         height
                         width
                     }
+                }
+            }
+        }
+        allYoutubeVideo(limit: 6) {
+            edges {
+                node {
+                    videoId
                 }
             }
         }
