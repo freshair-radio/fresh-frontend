@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
-import YouTube from "react-youtube"
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import YouTube from "react-youtube";
 
-import { Layout, PostCard, Pagination } from "../components/common"
-import { MetaData } from "../components/common/meta"
-import ShowCard from "../components/common/ShowCard"
-import PodcastCard from "../components/common/PodcastCard"
+import { Layout, PostCard, Pagination } from "../components/common";
+import { MetaData } from "../components/common/meta";
+import ShowCard from "../components/common/ShowCard";
+import PodcastCard from "../components/common/PodcastCard";
 /**
  * Tag page (/tag/:slug)
  *
@@ -14,36 +14,36 @@ import PodcastCard from "../components/common/PodcastCard"
  *
  */
 const Tag = ({ data, location, pageContext }) => {
-    const tag = data.ghostTag
-    const o_posts = data.allGhostPost.edges
-    const videos = data.allYoutubeVideo.edges
+    const tag = data.ghostTag;
+    const o_posts = data.allGhostPost.edges;
+    const videos = data.allYoutubeVideo.edges;
     const posts = o_posts.filter(
         ({ node }) =>
             !node.tags.find(t => t.slug == "hash-description") &&
             node.tags.find(t => t.slug == "hash-article")
-    )
+    );
 
     let description = o_posts
         .map(({ node }) => node)
-        .find(p => p.tags.find(t => t.slug == "hash-description"))
+        .find(p => p.tags.find(t => t.slug == "hash-description"));
 
     let hub_show = o_posts
         .map(({ node }) => node)
-        .find(p => p.tags.find(t => t.slug == "hash-show"))
+        .find(p => p.tags.find(t => t.slug == "hash-show"));
     const podcasts = hub_show
         ? o_posts.filter(({ node }) =>
               node.tags.find(t => t.slug == "hash-podcast")
           )
-        : []
-    const regex = /<audio src="(.*?)"/
+        : [];
+    const regex = /<audio src="(.*?)"/;
     const get_audio = html => {
-        let m = html.match(regex)
-        return m ? m[1] : ""
-    }
+        let m = html.match(regex);
+        return m ? m[1] : "";
+    };
     const href = tag.slug
         .split("-")
         .slice(1, -1)
-        .join("-")
+        .join("-");
     return (
         <>
             <MetaData data={data} location={location} type="series" />
@@ -84,19 +84,21 @@ const Tag = ({ data, location, pageContext }) => {
                                 </div>
                                 {!!podcasts.length && (
                                     <div className="inner">
-                                        <section className="post-feed show">
+                                        <section className="post-feed show team">
                                             {podcasts.map(({ node }) => (
                                                 // The tag below includes the markup for each post - components/common/PostCard.js
                                                 <PodcastCard
                                                     key={node.id}
                                                     podcast={node}
+                                                    style={
+                                                        "block " +
+                                                        tag.name.slice(1)
+                                                    }
                                                     audio={
                                                         typeof window !==
                                                         `undefined`
-                                                            ? new Audio(
-                                                                  get_audio(
-                                                                      node.html
-                                                                  )
+                                                            ? get_audio(
+                                                                  node.html
                                                               )
                                                             : {}
                                                     }
@@ -135,8 +137,8 @@ const Tag = ({ data, location, pageContext }) => {
                 </div>
             </Layout>
         </>
-    )
-}
+    );
+};
 
 Tag.propTypes = {
     data: PropTypes.shape({
@@ -150,9 +152,9 @@ Tag.propTypes = {
         pathname: PropTypes.string.isRequired
     }).isRequired,
     pageContext: PropTypes.object
-}
+};
 
-export default Tag
+export default Tag;
 
 export const pageQuery = graphql`
     query GhostTeamQuery($slug: String!, $limit: Int!, $skip: Int!) {
@@ -179,4 +181,4 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;

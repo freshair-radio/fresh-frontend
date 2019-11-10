@@ -59,9 +59,7 @@ const Tag = ({ data, location, pageContext }) => {
                                         podcast={node}
                                         audio={
                                             typeof window !== `undefined`
-                                                ? new Audio(
-                                                      get_audio(node.html)
-                                                  )
+                                                ? get_audio(node.html)
                                                 : {}
                                         }
                                         defaultImg={show.feature_image}

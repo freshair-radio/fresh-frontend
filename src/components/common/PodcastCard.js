@@ -3,19 +3,19 @@ import { useState } from "react";
 import { Link } from "gatsby";
 import { Tags } from "@tryghost/helpers-gatsby";
 import { readingTime as readingTimeHelper } from "@tryghost/helpers";
-const PodcastCard = ({ audio, podcast, defaultImg, idx }) => {
+import ReactPlayer from "react-player";
+import Progress from "./Progress";
+const PodcastCard = ({ audio, podcast, defaultImg, idx, style }) => {
     const url = `/posts/${podcast.slug}/`;
     const [isPlaying, setIsPlaying] = useState(false);
     const play = () => {
         setIsPlaying(true);
-        audio.play();
     };
     const pause = () => {
         setIsPlaying(false);
-        audio.pause();
     };
     return (
-        <article className={`podcast-card`}>
+        <article className={`podcast-card ${style || ""}`}>
             {podcast.feature_image ? (
                 <div
                     className="podcast-card-image"
@@ -58,6 +58,9 @@ const PodcastCard = ({ audio, podcast, defaultImg, idx }) => {
                             .join(" ")}
                     </p>
                 </section>
+            </div>
+            <div className="podcast-player-wrapper">
+                <Progress audio={audio} playing={isPlaying} />
             </div>
         </article>
     );
