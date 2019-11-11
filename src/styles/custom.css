@@ -857,3 +857,27 @@ input[type="range"].podcast-scrubber::-moz-focus-outer {
 
     justify-content: center;
 }
+
+.author-header {
+    display: grid;
+
+    grid-template-rows: auto auto;
+
+    grid-template-columns: 1fr;
+
+    justify-items: center;
+}
+.author-header-image img {
+    height: 300px;
+
+    width: 300px;
+
+    object-fit: cover;
+
+    border-radius: 300px;
+
+    margin: 20px;
+}
+.author-header-content h1 {
+    color: white;
+}
