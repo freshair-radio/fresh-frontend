@@ -1,10 +1,10 @@
 {
   "development": {
     "apiUrl": "https://content.freshair.org.uk",
-    "contentApiKey": "7ff37afeb5dab5040244c3a8cf"
+    "contentApiKey": "4632eda294242d70b8b79a0623 "
   },
   "production": {
     "apiUrl": "https://content.freshair.org.uk",
-    "contentApiKey": "7ff37afeb5dab5040244c3a8cf"
+    "contentApiKey": "4632eda294242d70b8b79a0623 "
   }
 }
