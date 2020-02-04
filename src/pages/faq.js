@@ -67,28 +67,13 @@ const FAQ = ({ data, location, pageContext }) => {
                                         “freshair”
                                     </li>
                                     <li>
-                                        A black application might flash up for a
-                                        second or less - it's really important
-                                        that this isn't closed. It'll close
-                                        itself after a second or so.
-                                    </li>
-                                    <li>Open up Firefox</li>
-                                    <li>
-                                        Go to{" "}
-                                        <a href="https://live.freshair.org.uk">
-                                            live.freshair.org.uk
-                                        </a>
-                                        , enter your username, and press “Go”
-                                    </li>
-                                    <li>Select your show</li>
-                                    <li>
-                                        When your show’s finished, if there’s
-                                        another show after you, select “Change
-                                        Show”, or if you’re the last show of the
-                                        day, select “Go Off Air”
+                                        Open up mAirList as normal, and in the
+                                        top right corner you should see a button
+                                        labelled "Line", and a button labelled
+                                        "Connect". Click both of those.
                                     </li>
                                 </ul>
-
+                                {/* 
                                 <h2>Accessing show recordings</h2>
 
                                 <ul>
@@ -107,20 +92,20 @@ const FAQ = ({ data, location, pageContext }) => {
                                     <li>
                                         Click on the one you want to download it
                                     </li>
-                                </ul>
+                                </ul> */}
 
                                 <h2>Access your account for the first time</h2>
 
                                 <ul>
                                     <li>
                                         Go to{" "}
-                                        <a href="https://admin.freshair.dev/ghost">
-                                            admin.freshair.dev/ghost
+                                        <a href="https://content.freshair.org.uk/ghost">
+                                            content.freshair.org.uk/ghost
                                         </a>
                                     </li>
                                     <li>
-                                        Enter the email address you used on the
-                                        contributor form
+                                        Enter the email address you used to
+                                        register for an account
                                     </li>
                                     <li>Click &quot;Forgot&quot;</li>
                                     <li>
@@ -148,8 +133,8 @@ const FAQ = ({ data, location, pageContext }) => {
                                 <ul>
                                     <li>
                                         Sign in at{" "}
-                                        <a href="https://admin.freshair.dev/ghost">
-                                            admin.freshair.dev/ghost
+                                        <a href="https://content.freshair.org.uk/ghost">
+                                            content.freshair.org.uk/ghost
                                         </a>
                                     </li>
                                     <li>
@@ -213,8 +198,8 @@ const FAQ = ({ data, location, pageContext }) => {
                                 <ul>
                                     <li>
                                         Go to{" "}
-                                        <a href="https://admin.freshair.dev/ghost/#/posts?tag=hash-show">
-                                            admin.freshair.dev/ghost/#/posts?tag=hash-show
+                                        <a href="https://content.freshair.org.uk/ghost/#/posts?tag=hash-show">
+                                            content.freshair.org.uk/ghost/#/posts?tag=hash-show
                                         </a>{" "}
                                         to list all the shows you&#39;re
                                         involved in.
@@ -241,7 +226,7 @@ const FAQ = ({ data, location, pageContext }) => {
                                     </li>
                                 </ul>
 
-                                <h2>Adding a podcast</h2>
+                                {/* <h2>Adding a podcast</h2>
 
                                 <ul>
                                     <li>
@@ -309,7 +294,7 @@ const FAQ = ({ data, location, pageContext }) => {
                                         and the name of your show (e.g.
                                         &quot;#The Pocket Book”).
                                     </li>
-                                </ul>
+                                </ul> */}
                             </div>
                         </section>
                     </article>
