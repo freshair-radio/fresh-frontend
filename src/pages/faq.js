@@ -28,12 +28,19 @@ const FAQ = ({ data, location, pageContext }) => {
                                     from this document properly. If there’s
                                     still an issue, go to{" "}
                                     <Link to="/help">freshair.org.uk/help</Link>{" "}
-                                    and submit an issue. Please don’t post on
-                                    the Freshair Members Facebook group, as this
-                                    isn’t likely to be seen in a timely fashion.
-                                    If your issue is urgent, there’re a couple
-                                    things you can do, as well as reporting an
-                                    issue:
+                                    and submit an issue. It's very important you
+                                    put enough information in this for us to
+                                    diagnose your issue. For instance, just
+                                    saying "I can't go on air" is unlikely to
+                                    lead to a quick resolution. Please tell us
+                                    what you've already tried, any error
+                                    messages you've seen, any other details, and
+                                    the steps you've followed from this
+                                    document. Please don’t post on the Freshair
+                                    Members Facebook group, as this isn’t likely
+                                    to be seen in a timely fashion. If your
+                                    issue is urgent, there’re a couple things
+                                    you can do, as well as reporting an issue:
                                 </p>
 
                                 <ul>
