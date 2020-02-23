@@ -19,6 +19,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install yarn
     - run: yarn
-    - run: gatsby build
+    - run: yarn build
       env:
         CI: true
