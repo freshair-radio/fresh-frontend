@@ -16,8 +16,8 @@ try {
     ghostConfig = {
         production: {
             apiUrl: process.env.GHOST_API_URL,
-            contentApiKey: process.env.GHOST_CONTENT_API_KEY
-        }
+            contentApiKey: process.env.GHOST_CONTENT_API_KEY,
+        },
     };
 } finally {
     const { apiUrl, contentApiKey } =
@@ -41,7 +41,7 @@ try {
  */
 module.exports = {
     siteMetadata: {
-        siteUrl: config.siteUrl
+        siteUrl: config.siteUrl,
     },
     plugins: [
         /**
@@ -51,8 +51,8 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: path.join(__dirname, `src`, `pages`),
-                name: `pages`
-            }
+                name: `pages`,
+            },
         },
         // Setup for optimised images.
         // See https://www.gatsbyjs.org/packages/gatsby-image/
@@ -60,22 +60,16 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: path.join(__dirname, `src`, `images`),
-                name: `images`
-            }
+                name: `images`,
+            },
         },
         {
             resolve: `gatsby-source-youtube-v2`,
             options: {
                 channelId: "UCW_-tO82U5mgAf70nJkS0MQ",
                 apiKey: "AIzaSyDx3-hxXyZV74iE6ou57SlyWxSVgQHqZJg",
-                maxVideos: 50 // Defaults to 50
-            }
-        },
-        {
-            resolve: `gatsby-source-instagram`,
-            options: {
-                username: `freshairradio`
-            }
+                maxVideos: 50, // Defaults to 50
+            },
         },
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
@@ -84,7 +78,7 @@ module.exports = {
             options:
                 process.env.NODE_ENV === `development`
                     ? ghostConfig.development
-                    : ghostConfig.production
+                    : ghostConfig.production,
         },
         /**
          *  Utility Plugins
@@ -110,8 +104,8 @@ module.exports = {
                         }
                     }
                 }
-              `
-            }
+              `,
+            },
         },
         // {
         //     resolve: `gatsby-plugin-feed`,
@@ -179,27 +173,27 @@ module.exports = {
                 }`,
                 mapping: {
                     allGhostPost: {
-                        sitemap: `posts`
+                        sitemap: `posts`,
                     },
                     allGhostTag: {
-                        sitemap: `tags`
+                        sitemap: `tags`,
                     },
                     allGhostAuthor: {
-                        sitemap: `authors`
+                        sitemap: `authors`,
                     },
                     allGhostPage: {
-                        sitemap: `pages`
-                    }
+                        sitemap: `pages`,
+                    },
                 },
                 exclude: [
                     `/dev-404-page`,
                     `/404`,
                     `/404.html`,
-                    `/offline-plugin-app-shell-fallback`
+                    `/offline-plugin-app-shell-fallback`,
                 ],
                 createLinkInHead: true,
-                addUncaughtPages: true
-            }
+                addUncaughtPages: true,
+            },
         },
         `gatsby-plugin-catch-links`,
         `gatsby-plugin-react-helmet`,
@@ -213,9 +207,9 @@ module.exports = {
                     customProperties({ preserve: false }),
                     colorFunction(),
                     autoprefixer({ browsers: ["last 2 versions"] }),
-                    cssnano()
-                ]
-            }
+                    cssnano(),
+                ],
+            },
         },
         {
             resolve: `gatsby-plugin-google-analytics`,
@@ -223,8 +217,8 @@ module.exports = {
                 trackingId: "UA-40410225-2",
                 anonymize: true,
                 respectDNT: true,
-                allowAdFeatures: false
-            }
-        }
-    ]
+                allowAdFeatures: false,
+            },
+        },
+    ],
 };

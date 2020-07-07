@@ -56,7 +56,6 @@
     "gatsby-plugin-sharp": "2.2.24",
     "gatsby-source-filesystem": "2.1.24",
     "gatsby-source-ghost": "3.4.6",
-    "gatsby-source-instagram": "^0.5.1",
     "gatsby-source-youtube": "^1.0.1",
     "gatsby-source-youtube-v2": "git+https://github.com/iyeraravind/gatsby-source-youtube.git",
     "gatsby-transformer-sharp": "2.2.15",
@@ -67,7 +66,6 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-helmet": "5.2.1",
-    "react-instagram-embed": "^1.5.0",
     "react-player": "^1.14.0",
     "react-youtube": "^7.9.0"
   }

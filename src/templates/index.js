@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 
 import { Layout, PostCard, Pagination } from "../components/common";
 import { MetaData } from "../components/common/meta";
-import InstagramEmbed from "react-instagram-embed";
 import YouTube from "react-youtube";
 
 /**
@@ -19,7 +18,6 @@ const Index = ({ data, location, pageContext }) => {
     const posts = data.allGhostPost.edges.slice(0, 4);
     const videos = data.allYoutubeVideo.edges;
 
-    const instas = data.allInstaNode.edges;
     const events = data.events.edges.slice(0, 4);
     const [album, setAlbum] = React.useState("");
     const [sent, setSent] = React.useState(false);
@@ -28,13 +26,13 @@ const Index = ({ data, location, pageContext }) => {
         fetch("https://bugreport.freshair.org.uk", {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
             },
             body: JSON.stringify({
                 name: "A FreshAir fan",
                 show: "album@freshair.dev",
-                message: `I vote for "${album}" as Album of the Year`
-            })
+                message: `I vote for "${album}" as Album of the Year`,
+            }),
         });
     };
     return (
@@ -54,7 +52,7 @@ const Index = ({ data, location, pageContext }) => {
                                     class="album-input"
                                     placeholder="My Favourite Nursery Rhymes by the Funsong band"
                                     value={album}
-                                    onChange={e => setAlbum(e.target.value)}
+                                    onChange={(e) => setAlbum(e.target.value)}
                                 ></input>
                                 <button class="album-submit" onClick={submit}>
                                     Send
@@ -63,37 +61,6 @@ const Index = ({ data, location, pageContext }) => {
                         )}
                     </div>
 
-                    {!!events.length && (
-                        <>
-                            <h2 className="latest">Events</h2>
-
-                            <div className="post-feed instagram">
-                                {events.map(({ node }, idx) => (
-                                    <PostCard
-                                        key={node.id}
-                                        post={node}
-                                        idx={idx}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    <h2 className="latest">Instagram</h2>
-
-                    <div className="post-feed instagram">
-                        {instas.map(({ node }, idx) => (
-                            <article class="post-card show-grid-item">
-                                <a
-                                    href={`https://www.instagram.com/p/${node.id}`}
-                                    target="_blank"
-                                    class="insta-link"
-                                >
-                                    {" "}
-                                    <img src={node.preview} class="insta" />
-                                </a>
-                            </article>
-                        ))}
-                    </div>
                     <h2 className="latest">Wee Sessions</h2>
 
                     <section className="post-feed wee-sessions">
@@ -119,12 +86,12 @@ const Index = ({ data, location, pageContext }) => {
 
 Index.propTypes = {
     data: PropTypes.shape({
-        allGhostPost: PropTypes.object.isRequired
+        allGhostPost: PropTypes.object.isRequired,
     }).isRequired,
     location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired
+        pathname: PropTypes.string.isRequired,
     }).isRequired,
-    pageContext: PropTypes.object
+    pageContext: PropTypes.object,
 };
 
 export default Index;
@@ -159,36 +126,7 @@ export const pageQuery = graphql`
                 }
             }
         }
-        allInstaNode(limit: 4, sort: { fields: timestamp, order: DESC }) {
-            edges {
-                node {
-                    id
-                    likes
-                    mediaType
-                    preview
-                    original
-                    timestamp
-                    caption
-                    localFile {
-                        childImageSharp {
-                            fixed(width: 150, height: 150) {
-                                ...GatsbyImageSharpFixed
-                            }
-                        }
-                    }
-                    # Only available with the public api scraper
-                    thumbnails {
-                        src
-                        config_width
-                        config_height
-                    }
-                    dimensions {
-                        height
-                        width
-                    }
-                }
-            }
-        }
+
         allYoutubeVideo(limit: 6) {
             edges {
                 node {
